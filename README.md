@@ -1,2 +1,3 @@
 # METCS683Assignments
-Please briefly introduce yourself and this repository.
+
+My name is Divya Thomas. This is where I will be tracking my progress for my project for CS683.
