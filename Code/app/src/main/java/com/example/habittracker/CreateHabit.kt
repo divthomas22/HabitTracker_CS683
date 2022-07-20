@@ -40,6 +40,11 @@ class CreateHabit : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        nameEdit = view.findViewById(R.id.nameEdit)
+        descEdit =  view.findViewById(R.id.descEdit)
+        priorityEdit = view.findViewById(R.id.ratingBar)
+        timeEdit = view.findViewById(R.id.editTextTime)
+
         binding.cancel.setOnClickListener {
             Log.d(TAG, "OPERATION CANCELLED - No data saved")
             Log.d(TAG, "Navigating back to Habit List...")
@@ -48,6 +53,22 @@ class CreateHabit : Fragment() {
 
         binding.submit.setOnClickListener {
             Log.d(TAG, "Submitted! Saving data...")
+
+            val name = nameEdit.text.toString()
+            Log.d(TAG, "Habit name: " + name)
+
+            val desc = descEdit.text.toString()
+            Log.d(TAG, "Habit Description: " + desc)
+
+            val priority = priorityEdit.rating
+            Log.d(TAG, "Habit Priority: " + priority.toString())
+
+            val reminder = timeEdit.text.toString()
+            Log.d(TAG, "Habit Reminder: " + reminder)
+
+            val newHabit = Habit(0, name, desc, priority, reminder)
+            Log.d(TAG, "New Habit saved! ID: " + newHabit.id)
+
             Log.d(TAG, "Navigating back to Habit List...")
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
