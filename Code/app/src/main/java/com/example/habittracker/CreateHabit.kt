@@ -55,19 +55,20 @@ class CreateHabit : Fragment() {
             Log.d(TAG, "Submitted! Saving data...")
 
             val name = nameEdit.text.toString()
-            Log.d(TAG, "Habit name: " + name)
+            Log.d(TAG, "Habit name: $name")
 
             val desc = descEdit.text.toString()
-            Log.d(TAG, "Habit Description: " + desc)
+            Log.d(TAG, "Habit Description: $desc")
 
             val priority = priorityEdit.rating
-            Log.d(TAG, "Habit Priority: " + priority.toString())
+            Log.d(TAG, "Habit Priority: $priority")
 
             val reminder = timeEdit.text.toString()
-            Log.d(TAG, "Habit Reminder: " + reminder)
+            Log.d(TAG, "Habit Reminder: $reminder")
 
-            val newHabit = Habit(0, name, desc, priority, reminder)
-            Log.d(TAG, "New Habit saved! ID: " + newHabit.id)
+            val newHabit = Habit(name, desc, priority, reminder, false)
+            val i = HabitList.saveHabit(newHabit)
+            Log.d(TAG, "New Habit saved at index $i : " + HabitList.getHabit(i))
 
             Log.d(TAG, "Navigating back to Habit List...")
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
