@@ -15,7 +15,7 @@ As someone who gets easily distracted by my phone in the morning or other priori
 
 While the "Routines" application is strictly for morning and evening routines, rather than general habits. It allows users to set up and list customized steps to thier routines, and check them off as they go about their days. The application also provides reflection questions in which the user can assess their mental health and periodically encourages them when they have completed a consistent streak of completing particuar tasks over a course of time. At the end of the week, the user is able to find a detailed progress report connecting their reflections/moods with te consistency of thier completion of tasks in their routines.
 
-I envision the Habit Tracker to e similar to this application in that it shows a list of custom items for the user to be able to check off as their days progress. I want this to also track trends and provide some sort of report and analysis of the user's progress. 
+I envision the Habit Tracker to be similar to this application in that it shows a list of custom items for the user to be able to check off as their days progress. I want this to also track trends and provide some sort of report and analysis of the user's progress. 
 
 
 ## 3. Requirement Analysis and Testing
@@ -26,9 +26,11 @@ I envision the Habit Tracker to e similar to this application in that it shows a
 |Description| As a user I want to be able to create a list of habits I would like to include in my life so that I am able to customize to my preference and be able to view my list of expectations. |
 |Mockups| ![image info](Pictures/list.jpg) |
 |Acceptance Tests| Given a prompt is shown on the screen, The user is able to type a habit and add it to the list of existing habits already on the screen. |
-|Test Results|Main Habit List Page (unfinished): ![image](Pictures/mainpage.png) Create Habit Page: ![image](Pictures/createhabitpage.png) ![image](Pictures/createhabittest.png) On submit: ![image](Pictures/newhabittestoutput.png) |
-|Status|Iteration 1: Implemented an outline of the main page and completed implementation of the "Create Habit" page and saves a new Habit object on submit|
-|TODO| Set up the Main Page to display all saved habits, and make them editable|
+|Test Results - ITERATION 1| Main Habit List Page (unfinished): ![image](Pictures/mainpage.png) Create Habit Page: ![image](Pictures/createhabitpage.png) ![image](Pictures/createhabittest.png) On submit: ![image](Pictures/newhabittestoutput.png)|
+|Test Results - ITERATION 2| Main page showing habits created from the Create New Habit page and submitted: ![image](Pictures/iteration2/mainpage_savedhabits.png) Log: ![image](Pictures/iteration2/mainpage_savedhabits_log.png) |
+|Status - Iteration 1| Implemented an outline of the main page and completed implementation of the "Create Habit" page and saves a new Habit object on submit 
+|Status - Iteration 2| Implemented the Main Habit List page to display all saved habits. |
+|TODO| Make existing habits deletable and editable|
 
 |   |   |
 |---|---|
@@ -36,12 +38,12 @@ I envision the Habit Tracker to e similar to this application in that it shows a
 |Description| As a user I want to be able to mark each habit complete as I go about my day so that I am able to visualize my progress. |
 |Mockups| ![image info](Pictures/markcomplete.PNG) |
 |Acceptance Tests| Given the list of habits on the screen, The user is able to mark each one complete either through a radio button or checkbox. |
-|Test Results|[TODO]|
-|Status|[TODO]|
+|Test Results - Iteration 2|Habit marked complete: ![image info](Pictures/iteration2/habitmarkedcomplete.png) Habit completion parameter persists when leaving the main page and coming back. ORDER OF STEPS: Wake up marked complete -> create new habit button -> saved a new habit (exercise) -> returned to main page -- RESULT: Wake up habit is still marked complete ![image info](Pictures/iteration2/habitmarkedcomplete_persists.png) Habit marked incompletion parameter persists when leaving the main page and coming back. ORDER OF STEPS: Wake up marked incomplete -> create new habit button -> CANCEL button clicked -> returned to main page -- RESULT: Wake up habit is still marked incomplete ![image info](Pictures/iteration2/habitmarkedincomplete_persists.png)|
+|Status - Iteration 2|Habits are able to be marked complete and these values persist when going between fragments.|
 
 |   |   |
 |---|---|
-|Title| Refresh List (Essential) |
+|Title| Refresh List (Desirable) |
 |Description| As a user I want to be able to refresh my habit list every day so that I am able to consistently go through this completion progress day by day and eventually develop a habit. |
 |Mockups| ![image info](Pictures/refresh.PNG) |
 |Acceptance Tests| Given that the screen shows a list of completed and not completed habits, the user is able to refresh the list to clear all checkmarks and start new with a list of non-completed tasks. |
@@ -63,9 +65,11 @@ I envision the Habit Tracker to e similar to this application in that it shows a
 |Description| As a user I want to be able to choose habits of higher importance so that I can focus on specific ones at a time if need be. |
 |Mockups| ![image info](Pictures/priority.jpg) |
 |Acceptance Tests| Given that the list of habits have varying priorities, The user can indicate high priority habits |
-|Test Results|![image info](Pictures/prio.png) Output on submit: ![image info](Pictures/prioutput.png)|
-|Status|Iteration 1: Set up a priority param upon creation of the habit|
-|TODO (If time permits) | Set up sorting functionality on priority level on main habit page |
+|Test Results - Iteration 1|![image info](Pictures/prio.png) Output on submit: ![image info](Pictures/prioutput.png)|
+|Test Results - Iteration 2|Filter button display on UI (no functionality yet): ![image info](Pictures/iteration2/filterbutton.png)|
+|Status - Iteration 1| Set up a priority param upon creation of the habit|
+|Status - Iteration 2| Set up a filter button on the main page to add sorting functionality based off of priority|
+|TODO (If time permits) | Configure sorting functionality on the filter button |
 
 |   |   |
 |---|---|
@@ -73,13 +77,13 @@ I envision the Habit Tracker to e similar to this application in that it shows a
 |Description| As a user I want to be able to set a reminder on my phone for specific habits so that I am kept on track even when I forget to check the application itself. |
 |Mockups| ![image info](Pictures/reminder.jpg) ![image info](Pictures/reminderalert.jpg)|
 |Acceptance Tests| Given that the application can run in the background of others, The user sets a reminder on the application for a habit and the user is alerted at the specified time.|
-|Test Results|![image info](Pictures/reminder.png) Output on submit: ![image info](Pictures/reminderoutput.png) |
-|Status|Iteration 1: Set up a reminder param upon creation of the habit|
+|Test Results - Iteration 1|![image info](Pictures/reminder.png) Output on submit: ![image info](Pictures/reminderoutput.png) |
+|Status - Iteration 1| Set up a reminder param upon creation of the habit|
 |TODO (If time permits) | Set up a push notification for reminders, allow user the option to turn off reminder |
 
 
 ## 4. Design and Implementation
-Iteration 1:
+### ITERATION 1:
 
 This iteration consisted of configuring the general organization and setup of the application. All main pages have been created and will be enhanced as time progresses. 
 
@@ -101,11 +105,44 @@ Source Code:
 
 Habit.kt data class structure: ![image info](Pictures/Habitkt.png)
 
+### ITERATION 2: 
 
-## 5. Project Structure 
-Iteration 1 Project Structure
+This iteration primarily focused on the configuration of the Main Habit page and the ability for it to persist data as the user moves from page to page on the UI. 
+
+The configuration of the Main Habit page required the setup of a RecyclerView, to allow for variablility in number of habits created and to allow the user to scroll through in them in the event that more habits are added that cannot all fit on the page.
+
+The RecyclerView widget is configured within the habit_list.xml using a LinearLayoutManager. Code below:
+
+![image info](Pictures/iteration2/recyclerviewwidget.png)
+
+The list item used in this RecyclerView provides the template to which the habit items will be listed into the RecyclerView. This is set up in the habit_rows.xml file below. This xml setup consists of an overarching CardView to hold a TextView containing the habit name, and a CheckBox widget to indicate completion/incompletion of the habit.
+
+![image info](Pictures/iteration2/habit_rows_xml.png)
+
+Along with the habit_rows.xml, the display needed to be infated using a binding class associated with the xml. Please see this HabitRowsBinding.kt class below. 
+
+![image info](Pictures/iteration2/HabitRowsBinding.png)
+
+Eventually, I plan to set up a database to store and load habit data peristently. Meaning that even on application restart, the user will not have to recreate all data. Until I am able to configure this, I will use a companion object of HabitList.kt to store an ArrayList of Habits as a placeholder. As each new habit is created, it will be stored in this list, to be taken up and organized by the RecyclerView.
+
+![image info](Pictures/iteration2/HabitListCompanionObject.png)
+
+
+In order to translate the data set information into something readable for the xml, it is necessary to set a HabitListAdapter.kt. As of now, the only information necessary to translate by the main Habit List page, is the habit name and checkbox (isCompleted indicator). This is why these are the only two attributes of the Habit class that are being binded and set to UI widgets. More can be added on within this Adapter if needed in the future. 
+
+![image info](Pictures/iteration2/HabitListAdapter1.png)
+![image info](Pictures/iteration2/HabitListAdapter2.png)
+
+This setup is what allowed me to configure the Habit List page to display all created and saved habits while also allowing the user to mark each as complete or incomplete directly from the UI. This provides the user with a simple and clearly usable interface that they can interact with and update as they complete complete habits throughout the day. 
+
+## 5. Project Structure - (recent changes highlighted)
+### Iteration 1 Project Structure
 
 ![image info](Pictures/ProjectStructure1.png)
+
+### Iteration 2 Project Structure
+
+![image info](Pictures/iteration2/ProjectStructure2.png)
 
 
 ## 6. Timeline
@@ -113,10 +150,10 @@ Iteration 1 Project Structure
 |Iteration|Application Requirements|Android Components and Features to be used|
 |---|---|---|
 |1|Create/View Habit List (Essential)|Manifest File and basic UI display|
-|2|Configure Habit List Display and Mark Complete Functionality|HabitList.kt, habit_list.xml|
-|3|TBD|TBD|
-|4|TBD|TBD|
-|5|TBD|TBD|
+|2|Configure Habit List Display and Mark Complete Functionality (Essential)|HabitList.kt, habit_list.xml|
+|3|Make existing habits deletable and editable (Essential)|HabitList.kt, possibly a new 'Edit' fragment|
+|4|Save Progress and Report (Desirable)|Set up database or input file to store/reload data even upon application restart|
+|5|Refresh List (Desirable) and Prioritize Habits/Filter functionality (Optional)|Each habit's individual values are edited and or used to order them on the page |
 
 ## 7. Future Work 
 [TODO] - Optional
