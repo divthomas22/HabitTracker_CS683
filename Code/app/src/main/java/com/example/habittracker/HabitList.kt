@@ -1,6 +1,5 @@
 package com.example.habittracker
 
-import HabitListAdapter
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +18,7 @@ class HabitList : Fragment() {
     companion object {
 
         private var habitArray: ArrayList<Habit> = ArrayList()
+        private var editPos: Int = 0
 
         fun saveHabit(newHabit: Habit): Int {
             habitArray.add(newHabit)
@@ -29,8 +29,16 @@ class HabitList : Fragment() {
             return habitArray.get(i)
         }
 
-        fun deleteHabit(habit : Habit){
-            habitArray.remove(habit)
+        fun deleteHabit(i: Int){
+            habitArray.removeAt(i)
+        }
+
+        fun getPos() : Int {
+            return editPos
+        }
+
+        fun setPos(i: Int) {
+            editPos = i
         }
     }
 

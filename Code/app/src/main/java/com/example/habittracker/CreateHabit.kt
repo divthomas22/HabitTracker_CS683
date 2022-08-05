@@ -18,10 +18,10 @@ import com.example.habittracker.databinding.CreateHabitBinding
 class CreateHabit : Fragment() {
 
     private var _binding: CreateHabitBinding? = null
-    private lateinit var nameEdit: EditText
-    private lateinit var descEdit: EditText
-    private lateinit var priorityEdit: RatingBar
-    private lateinit var timeEdit : EditText
+    private lateinit var nameCreate: EditText
+    private lateinit var descCreate: EditText
+    private lateinit var priorityCreate: RatingBar
+    private lateinit var reminderCreate : EditText
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -40,10 +40,10 @@ class CreateHabit : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        nameEdit = view.findViewById(R.id.nameEdit)
-        descEdit =  view.findViewById(R.id.descEdit)
-        priorityEdit = view.findViewById(R.id.ratingBar)
-        timeEdit = view.findViewById(R.id.editTextTime)
+        nameCreate = view.findViewById(R.id.nameCreate)
+        descCreate =  view.findViewById(R.id.descCreate)
+        priorityCreate = view.findViewById(R.id.createPriority)
+        reminderCreate = view.findViewById(R.id.createReminder)
 
         binding.cancel.setOnClickListener {
             Log.d(TAG, "OPERATION CANCELLED - No data saved")
@@ -54,16 +54,16 @@ class CreateHabit : Fragment() {
         binding.submit.setOnClickListener {
             Log.d(TAG, "Submitted! Saving data...")
 
-            val name = nameEdit.text.toString()
+            val name = nameCreate.text.toString()
             Log.d(TAG, "Habit name: $name")
 
-            val desc = descEdit.text.toString()
+            val desc = descCreate.text.toString()
             Log.d(TAG, "Habit Description: $desc")
 
-            val priority = priorityEdit.rating
+            val priority = priorityCreate.rating
             Log.d(TAG, "Habit Priority: $priority")
 
-            val reminder = timeEdit.text.toString()
+            val reminder = reminderCreate.text.toString()
             Log.d(TAG, "Habit Reminder: $reminder")
 
             val newHabit = Habit(name, desc, priority, reminder, false)
