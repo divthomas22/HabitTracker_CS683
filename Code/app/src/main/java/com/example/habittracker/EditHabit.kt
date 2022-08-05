@@ -1,5 +1,4 @@
 package com.example.habittracker
-
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
@@ -40,7 +39,6 @@ class EditHabit : Fragment() {
         return binding.root
 
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

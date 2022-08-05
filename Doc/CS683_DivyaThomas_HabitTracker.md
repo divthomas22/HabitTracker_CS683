@@ -22,19 +22,20 @@ I envision the Habit Tracker to be similar to this application in that it shows 
 
 |   |   |
 |---|---|
-|Title| Create/View Habit List (Essential) |
+|Title| Create/View Habit List (Essential) *COMPLETED* |
 |Description| As a user I want to be able to create a list of habits I would like to include in my life so that I am able to customize to my preference and be able to view my list of expectations. |
 |Mockups| ![image info](Pictures/list.jpg) |
 |Acceptance Tests| Given a prompt is shown on the screen, The user is able to type a habit and add it to the list of existing habits already on the screen. |
 |Test Results - ITERATION 1| Main Habit List Page (unfinished): ![image](Pictures/mainpage.png) Create Habit Page: ![image](Pictures/createhabitpage.png) ![image](Pictures/createhabittest.png) On submit: ![image](Pictures/newhabittestoutput.png)|
 |Test Results - ITERATION 2| Main page showing habits created from the Create New Habit page and submitted: ![image](Pictures/iteration2/mainpage_savedhabits.png) Log: ![image](Pictures/iteration2/mainpage_savedhabits_log.png) |
+|Test Results - ITERATION 3|Test Habit created (before editing): ![image](Pictures/iteration3/before%20edit.png) On Submiting: ![image](Pictures/iteration3/onsubmit.png) On Clicking the edit button and changing values: ![image](Pictures/iteration3/editing.png) After "Save Changes" is pressed and edit button for same habit is pressed again - changes persisted: ![image](Pictures/iteration3/afteredit_persisted.png) On delete button selected - Habit is removed : ![image](Pictures/iteration3/ondelete.png)|
 |Status - Iteration 1| Implemented an outline of the main page and completed implementation of the "Create Habit" page and saves a new Habit object on submit 
 |Status - Iteration 2| Implemented the Main Habit List page to display all saved habits. |
-|TODO| Make existing habits deletable and editable|
+|Status - Iteration 3| Configured the Edit Habit button and page which allows the user to edit details of a particular habit and/or delete it if desired.|
 
 |   |   |
 |---|---|
-|Title| Check off/Mark Habits Complete (Essential) |
+|Title| Check off/Mark Habits Complete (Essential) *COMPLETED*|
 |Description| As a user I want to be able to mark each habit complete as I go about my day so that I am able to visualize my progress. |
 |Mockups| ![image info](Pictures/markcomplete.PNG) |
 |Acceptance Tests| Given the list of habits on the screen, The user is able to mark each one complete either through a radio button or checkbox. |
@@ -135,6 +136,44 @@ In order to translate the data set information into something readable for the x
 
 This setup is what allowed me to configure the Habit List page to display all created and saved habits while also allowing the user to mark each as complete or incomplete directly from the UI. This provides the user with a simple and clearly usable interface that they can interact with and update as they complete complete habits throughout the day. 
 
+### ITERATION 3:
+
+This third iteration focused on completing the last "Essential" requirement of the Habit Tracker application. This consisted of implementing a new Edit Habit fragment. I used the help of online research, the already configured Create Habit configuration, and similar work done on Lab2 to help me with this aspect of the project.
+
+In order to navigate from page to page the nav_graph.xml file needed to be adjusted to add a third fragment (the Edit Habit fragment) and actions needed to be implemented to navigate between the first and third fragments, with the first being the main habit list with the edit icon that will be used to set the onClickListener to navigation. 
+
+![image info](Pictures/iteration3/nav_graph.png)
+
+There needed to be additions to the HabitList.kt companion object to ensure the edit/delete configurations were working properly. One of which was an editPos attribute, which would be set when an item was selected for editing. This value holds the position of this habit in the habitArray to be mapped while editing or during deleting. It basically stores the position of the "active edit habit". The other addition was the function to delete a habit within the habitArray, and therefore the entire system, given a position. This method is to be called when the delete button is selected from the Edit Habit page.
+
+![image info](Pictures/iteration3/habitListEditPos_delete.png)
+
+An edit button was then configured onto the habit_rows.xml so each habit in the RecyclerView would have an edit option and navigation to the edit page. The logic for this button was then implemented within the HabitListAdapter.kt file.
+
+![image info](Pictures/iteration3/editButtonconf.png)
+
+![image info](Pictures/iteration3/AdapterEdit.png)
+
+As you can see, the adapter required the binding of the edit button the viewholder as well as an onClickListener. Upon clicking the button, the corresponding habit's position is set to the editPos variable in teh companion object to be referenced, and the navigation action from nav_graph.xml to go from First Fragment to Third Fragment is called.
+
+The edit_habit.xml file was similar to the create_habit.xml, in that it had the same editText fields, only this time with previously inserted data for the habit for the user to update. There was a similar configuration made for Lab2, so I also took notes from that assignment as well to properly configure this fragment. Please see the edit_habit.xml file below.
+
+![image info](Pictures/iteration3/edit_habit.xml.png)
+
+In addition to this, you can see the two new buttons at the bottom. First to save the data inputted on this page to the existing habit, and another option to delete the habit. This button will remove the habit from all data sets and the main habit list.
+
+The majority of my work for this iteration was done on the below EditHabit.kt file, which includes the configuration of bringing the saved data for the selected habit back to the form to be updated, as well as implementing the delete functionality.
+
+![image info](Pictures/iteration3/edithabitkt1.png)
+
+Above you can see a very similar setup to CreateHabit.kt except for the addition of setting the EditText and RatingBar values to the existing values within the habitArray (or future database).
+
+
+![image info](Pictures/iteration3/edithabitkt2.png)
+
+The second half of this file contains the button configurations. The delete button calls the companion object's delete method while passing in the editPos saved. The page is then navigated back to the Habit List page, now missing the deleted habit. The "Save Changes" button is also very similar to the "Submit" button's configuration from CreateHabit.kt. The difference here is that instead of creating a new Habit object to add to the habitArray, the existing habit is simply edited with the updated values in the form upon clicking the button. The user is then also navigated back to the Habit List to see the changes reflected.
+
+
 ## 5. Project Structure - (recent changes highlighted)
 ### Iteration 1 Project Structure
 
@@ -144,8 +183,12 @@ This setup is what allowed me to configure the Habit List page to display all cr
 
 ![image info](Pictures/iteration2/ProjectStructure2.png)
 
+### Iteration 3 Project Structure
 
-## 6. Timeline
+![image info](Pictures/iteration3/ProjectStructure3.png)
+
+
+## 6. Timeline - *ON TRACK*
 
 |Iteration|Application Requirements|Android Components and Features to be used|
 |---|---|---|
@@ -164,4 +207,5 @@ Github Link: https://github.com/CS683/metcs683projects-divthomas22
 
 ## 9. References
 
-Routines by Care/Of - https://apps.apple.com/us/app/routines-by-care-of/id1498695422
+- Routines by Care/Of - https://apps.apple.com/us/app/routines-by-care-of/id1498695422
+- Navigation for RecyclerView - https://stackoverflow.com/questions/57117726/navigation-component-in-recyclerview-adapter 
