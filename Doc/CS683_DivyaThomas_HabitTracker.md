@@ -176,9 +176,75 @@ The second half of this file contains the button configurations. The delete butt
 
 ### ITERATION 4:
 
-This iteration consisted of the sole task of configuring a Room Database with the Habit Tracker application. This task required many code additions and changes or enhancements to various current configurations. The UI and front-end functionality, on the otherhand, stayed the same as the previous iteration. 
+This iteration consisted of the sole task of configuring a Room Database with the Habit Tracker application. With guidance from Module 4's notes and Lab5's solution, I was able to put together this Room database successfully. However, this task required many code additions and changes or enhancements to various current configurations. The UI and front-end functionality, on the otherhand, stayed the same as the previous iteration.
 
+#### Adapters 
 
+The HabitListAdapter.kt went through a few changes to remove any dependency on the previously configured habitArray companion object and replace it with a new one generated and updated by the database. The adapter also included an OnHabitClickListener to be able to set and adjust data from habit to habit.
+
+![image info](Pictures/iteration4/adapter1.png)
+![image info](Pictures/iteration4/adapter2.png)
+![image info](Pictures/iteration4/adapter3.png)
+
+#### Data Layer 
+
+The data layer of the project, as expected, experienced quite a few changes. The Habit.kt already existed before, but only as a data class. The additions made to this class consisted of the additions of Room database annotations to properly convert the class to a database table, with each attribute as a corresponding column in the table. I also added in a toString() function in order to help display habit data while logging. 
+
+![image info](Pictures/iteration4/habit.png)
+
+The next data layer object was the HabitDao.kt addition to the project. This is a Dao that is used to convert Kotlin code actions from the application to database queries to continuously update the local database in congruence with changes within the application.
+
+![image info](Pictures/iteration4/habitdao.png)
+
+The final data layer object is the HabitsDatabase.kt that initializes the local database. This class connects the database to the Habit.kt entity, as well as the HabitDao.kt to translate between front end and back end.
+
+![image info](Pictures/iteration4/database.png)
+
+#### Fragments
+
+While the same fragments stayed within the project, there were modifications necessary in each fragment to remove dependencies to the previous habitArray companion object that was replaced by the database and set up the OnHabitClickListener and ViewModels.
+
+In addition to the OnHabitClickListener and ViewModels that were implemented in all fragments, the CreateHabit.kt fragment needs to incorporate creating a new Habit object and saving it in the database on the submit button click, instead of in the old habitArray. In the OnClick function for the submit button, this was implemented using the HabitListViewModel's addHabit method. 
+
+![image info](Pictures/iteration4/create1.png)
+![image info](Pictures/iteration4/create2.png)
+
+The EditHabit.kt class also had the ViewModel and Listener setups but this class needed to prefill the EditText elements with the current habit's values to be edited, instead of CreateHabit's blank form. This screen also required the save functionality (CurHabitViewModel's updateCurHabit method) and the delete functionality (CurHabitViewModel.habitTrackerRepository.deleteHabit method) to delete from the database.
+
+![image info](Pictures/iteration4/Edit1.png)
+![image info](Pictures/iteration4/Edit2.png)
+
+The HabitList.kt seems to have faced the most changes between the fragments. In addition to the other changes on ViewModels and Listener, this fragement was where the companion object was removed and all dependency on the previous habitArray was based here. This needed to be reconfigured to the local database instead, which was done using the ViewModels as the other fragments had as well.
+
+![image info](Pictures/iteration4/habitlist1.png)
+![image info](Pictures/iteration4/habitlist2.png)
+![image info](Pictures/iteration4/habitlist3.png)
+
+#### ViewModels
+
+Two viewmodels were added to this application in order to provide a means for the application elements to interact with the data layer (rather than previously through the HabitList.kt companion object). The data layer, being the local database, will send and receive data from the UI components through these viewmodels. 
+
+The HabitListViewModel.kt works with the data for all Habit objects in the database as a whole and interacts with mainly the HabitList.kt fragment. 
+
+![image info](Pictures/iteration4/HabitListViewModel.png)
+
+The CurHabitViewModel.kt does the same, but for an individual habit. Whichever habit is passed into this viewmodel as the curHabit, will be spotlighted for updating. 
+
+![image info](Pictures/iteration4/curHabitViewModel.png)
+
+#### Other Changes
+
+A small change that was implemented was a simple OnHabitClick method definition within the MainActivity.kt class since there needed to be an implementation of the OnHabitClickListener class. No other functionality was needed for this methods, so I just used this method to log information. 
+
+![image info](Pictures/iteration4/main.png)
+
+A HabitTrackerApplication.kt class was created to setup the callback to the database, the repository, and possibly set up any default initial habits for a user to start with. I don't have any initial habits set up now, as I found no need to at the moment, but this is good to have if needed in the future.
+
+![image info](Pictures/iteration4/application.png)
+
+Finally, I made an addition of a HabitTrackerRepository.kt class that will encapsulate the database operations by being called by the viewmodels amd passing in the Dao as an attribute to call database methods from.
+
+![image info](Pictures/iteration4/repo.png)
 
 
 ## 5. Project Structure - (recent changes highlighted)

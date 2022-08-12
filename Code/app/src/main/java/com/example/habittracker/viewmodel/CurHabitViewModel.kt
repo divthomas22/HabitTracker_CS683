@@ -27,9 +27,6 @@ class CurHabitViewModel(application: Application): AndroidViewModel(application)
         _curHabit.value = habit
     }
 
-    fun isCurHabit(habit:Habit):Boolean{
-        return _curHabit.value?.id == habit.id
-    }
     fun updateCurHabit(
         name: String,
         description: String,
@@ -44,7 +41,6 @@ class CurHabitViewModel(application: Application): AndroidViewModel(application)
             this.remindTime = remindTime
             this.isComplete = isComplete
         }
-
         habitTrackerRepository.editHabit(_curHabit.value!!)
     }
 

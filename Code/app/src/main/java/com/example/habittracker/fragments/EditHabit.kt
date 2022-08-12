@@ -21,14 +21,9 @@ import com.example.habittracker.viewmodel.HabitListViewModel
  */
 class EditHabit : Fragment(), View.OnClickListener {
 
-
     private var _binding: EditHabitBinding? = null
-
     private lateinit var viewModel: CurHabitViewModel
     private lateinit var listViewModel: HabitListViewModel
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -38,7 +33,6 @@ class EditHabit : Fragment(), View.OnClickListener {
 
         _binding = EditHabitBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,7 +72,6 @@ class EditHabit : Fragment(), View.OnClickListener {
                 binding.editReminder.text.toString(),
                     habit.isComplete
                 )
-
                 Log.d(TAG, "Habit updated at id ${habit.id}: \n" + viewModel.curHabit.value?.toString())
             }
 
@@ -87,9 +80,7 @@ class EditHabit : Fragment(), View.OnClickListener {
                 viewModel.habitTrackerRepository.deleteHabit(habit)
                 Log.d(TAG, "HABIT ${habit.id} DELETED")
             }
-        } else {
-            Log.d(TAG, "NO HABIT SELECTED")
-        }
+        } else { Log.d(TAG, "NO HABIT SELECTED") }
 
         Log.d(TAG, "Navigating back to Habit List...")
         findNavController().navigate(R.id.action_ThirdFragment_to_FirstFragment)

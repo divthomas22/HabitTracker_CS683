@@ -1,33 +1,23 @@
 package com.example.habittracker
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.example.habittracker.datalayer.Habit
 import com.example.habittracker.datalayer.HabitDao
-import kotlinx.coroutines.flow.Flow
 import java.util.concurrent.Executors
 
-class HabitTrackerRepository (
-    private val habitDao: HabitDao
-) {
+class HabitTrackerRepository (private val habitDao: HabitDao) {
     val executor =  Executors.newSingleThreadExecutor()
 
     fun addHabit(habit: Habit){
-        executor.execute {
-        habitDao.saveHabit(habit)
-        }
+        executor.execute { habitDao.saveHabit(habit) }
     }
 
     fun deleteHabit(habit: Habit) {
-        executor.execute {
-        habitDao.deleteHabit(habit)
-        }
+        executor.execute { habitDao.deleteHabit(habit) }
     }
 
     fun editHabit(habit: Habit) {
-        executor.execute {
-            habitDao.editHabit(habit)
-        }
+        executor.execute { habitDao.editHabit(habit) }
     }
 
     fun searchHabitById(habit: Habit) {
@@ -40,11 +30,9 @@ class HabitTrackerRepository (
         return habitDao.getAllHabits()
     }
 
-
     fun searchHabitByName(habit: Habit): LiveData<List<Habit>> {
         return habitDao.searchHabitsbyName(habit.name)
     }
-
 
     fun count(): LiveData<Int> {
         return habitDao.count()

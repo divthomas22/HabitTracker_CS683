@@ -28,7 +28,6 @@ class HabitList : Fragment() {
 
     private var _binding: HabitListBinding? = null
     private val binding get() = _binding!!
-
     private var columnCount = 1
 
     private lateinit var myAdapter: HabitListAdapter
@@ -36,17 +35,12 @@ class HabitList : Fragment() {
     private lateinit var listViewModel: HabitListViewModel
     private lateinit var onHabitClickListener: HabitListAdapter.OnHabitClickListener
 
-
-        // This property is only valid between onCreateView and
-        // onDestroyView.
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = HabitListBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onAttach(context: Context) {
@@ -54,10 +48,9 @@ class HabitList : Fragment() {
         if (context is HabitListAdapter.OnHabitClickListener) {
             onHabitClickListener = context
         } else {
-            throw RuntimeException("Must implement EditHabitListener")
+            throw RuntimeException("Must implement OnHabitClickListener")
         }
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -93,7 +86,6 @@ class HabitList : Fragment() {
                 myAdapter.replaceItems(it)
                 Log.d(TAG, "Item Count:" + myAdapter.itemCount.toString())
                 viewModel.initCurHabit(myAdapter.getHabit(0))
-
             })
 
             viewModel.curHabit.observe(viewLifecycleOwner, Observer {
@@ -101,16 +93,16 @@ class HabitList : Fragment() {
             })
         }
 
-//        if (myAdapter.itemCount > 0){
-//            binding.emptyView.text = ""
-//        } else {
-//            binding.emptyView.text = "No Habits yet! Create one! ->"
-//        }
-
         binding.addHabit.setOnClickListener {
             Log.d(TAG, "Create Habit Button selected.")
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
+    //        if (myAdapter.itemCount > 0){
+//            binding.emptyView.text = ""
+//        } else {
+//            binding.emptyView.text = "No Habits yet! Create one! ->"
+//        }
 
     }
 
