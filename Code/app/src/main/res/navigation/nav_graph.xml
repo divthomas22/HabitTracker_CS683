@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.habittracker.HabitList"
+        android:name="com.example.habittracker.fragments.HabitList"
         android:label="@string/habit_list_label"
         tools:layout="@layout/habit_list">
 
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.habittracker.CreateHabit"
+        android:name="com.example.habittracker.fragments.CreateHabit"
         android:label="@string/create_habit_title"
         tools:layout="@layout/create_habit">
 
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/ThirdFragment"
-        android:name="com.example.habittracker.EditHabit"
+        android:name="com.example.habittracker.fragments.EditHabit"
         android:label="@string/edit_habit_title"
         tools:layout="@layout/edit_habit">
 

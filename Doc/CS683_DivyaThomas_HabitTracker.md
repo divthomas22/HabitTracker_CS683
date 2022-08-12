@@ -57,8 +57,9 @@ I envision the Habit Tracker to be similar to this application in that it shows 
 |Description| As a user I want to track my completion rate of each habit and have some sort of report or feedback for reaching certain checkpoints (3 days in a row, 1 week, etc.). |
 |Mockups| ![image info](Pictures/report.png) |
 |Acceptance Tests| Given that a user selected to complete a habit, Data is then stored and the streak count for that habit is incremented. Vice versa when the user deselects the habit (different from refreshing) |
-|Test Results|[TODO]|
-|Status|[TODO]|
+|Test Results - Iteration 4|Proof of Database setup from UI. Pulls the 2 previously added records from Database table. ![image info](Pictures/iteration4/databasepull.png)|
+|Status - Iteration 4| Room Database is configured and habits are being saved and updated accordingly. Completely removed dependence of the habitArray List that was being used before.|
+|TODO|Add additional columns and configurations for tracking habit progress reports and streaks|
 
 |   |   |
 |---|---|
@@ -173,6 +174,12 @@ Above you can see a very similar setup to CreateHabit.kt except for the addition
 
 The second half of this file contains the button configurations. The delete button calls the companion object's delete method while passing in the editPos saved. The page is then navigated back to the Habit List page, now missing the deleted habit. The "Save Changes" button is also very similar to the "Submit" button's configuration from CreateHabit.kt. The difference here is that instead of creating a new Habit object to add to the habitArray, the existing habit is simply edited with the updated values in the form upon clicking the button. The user is then also navigated back to the Habit List to see the changes reflected.
 
+### ITERATION 4:
+
+This iteration consisted of the sole task of configuring a Room Database with the Habit Tracker application. This task required many code additions and changes or enhancements to various current configurations. The UI and front-end functionality, on the otherhand, stayed the same as the previous iteration. 
+
+
+
 
 ## 5. Project Structure - (recent changes highlighted)
 ### Iteration 1 Project Structure
@@ -186,6 +193,9 @@ The second half of this file contains the button configurations. The delete butt
 ### Iteration 3 Project Structure
 
 ![image info](Pictures/iteration3/ProjectStructure3.png)
+
+### Iteration 4 Project Structure
+![image info](Pictures/iteration4/projstructure4.png)
 
 
 ## 6. Timeline - *ON TRACK*
