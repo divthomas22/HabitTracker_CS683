@@ -48,8 +48,8 @@ I envision the Habit Tracker to be similar to this application in that it shows 
 |Description| As a user I want to be able to refresh my habit list every day so that I am able to consistently go through this completion progress day by day and eventually develop a habit. |
 |Mockups| ![image info](Pictures/refresh.PNG) |
 |Acceptance Tests| Given that the screen shows a list of completed and not completed habits, the user is able to refresh the list to clear all checkmarks and start new with a list of non-completed tasks. |
-|Test Results|[TODO]|
-|Status|[TODO]|
+|Test Results - Iteration 5|UI Refresh Button Implemented: ![image info](Pictures/iteration5/refreshlist.png) ![image info](Pictures/iteration5/refreshlistlog.png)|
+|Status - Iteration 5|Implementation of the refresh button and functionality successfully complete with the tracking of streaks.|
 
 |   |   |
 |---|---|
@@ -58,9 +58,9 @@ I envision the Habit Tracker to be similar to this application in that it shows 
 |Mockups| ![image info](Pictures/report.png) |
 |Acceptance Tests| Given that a user selected to complete a habit, Data is then stored and the streak count for that habit is incremented. Vice versa when the user deselects the habit (different from refreshing) |
 |Test Results - Iteration 4|Proof of Database setup from UI. Pulls the 2 previously added records from Database table. ![image info](Pictures/iteration4/databasepull.png)|
-|Test Results - Iteration 5|[TODO]|
+|Test Results - Iteration 5|![image info](Pictures/iteration5/refreshlistlog.png)|
 |Status - Iteration 4| Room Database is configured and habits are being saved and updated accordingly. Completely removed dependence of the habitArray List that was being used before.|
-|Status - Iteration 5|Added additional columns and configurations for tracking habit progress reports and streaks|
+|Status - Iteration 5|Added additional columns and configurations for tracking habit progress reports and streaks on save|
 |TODO (If time permits) | Set up a "reports" page that displays streak data for the user to be able to check his/her progress |
 
 |   |   |
@@ -71,8 +71,10 @@ I envision the Habit Tracker to be similar to this application in that it shows 
 |Acceptance Tests| Given that the list of habits have varying priorities, The user can indicate high priority habits |
 |Test Results - Iteration 1|![image info](Pictures/prio.png) Output on submit: ![image info](Pictures/prioutput.png)|
 |Test Results - Iteration 2|Filter button display on UI (no functionality yet): ![image info](Pictures/iteration2/filterbutton.png)|
+|Test Results - Iteration 5|New Filter Switch: ![image info](Pictures/iteration5/filterswitch.png)
 |Status - Iteration 1| Set up a priority param upon creation of the habit|
 |Status - Iteration 2| Set up a filter button on the main page to add sorting functionality based off of priority|
+|Status - Iteration 5| Modified the filter button to only show on the HabitList page and provide the user easy access to it's functionality.|
 |TODO (If time permits) | Configure sorting functionality on the filter button |
 
 |   |   |
@@ -250,7 +252,24 @@ Finally, I made an addition of a HabitTrackerRepository.kt class that will encap
 
 ### ITERATION 5:
 
-[TODO]
+This iteration included adding some additional functionality aside from the essential tasks. In particular, the save and refresh to a new day functionality was configured in this iteration. Due to the fact that time does not exactly permit the testing of this application to account for restarting the habit schedule as a new day comes along. 
+
+I was able to mimic this action through a manual refresh. Every time this button is clicked, a "new day" is simulated, saving progress from the day before based off of the completions, and clearing the board of checked boxes for the user to start back up again.
+
+This change was implemented in three main steps. The first was to introduce a new column within the habit database table to track the number of days a given habit has been consistently completed. This was done by adding the "streaks" attribute to Habit.kt file as well as references to this class/database objects. 
+
+Habit.kt file: ![image info](Pictures/iteration5/habit.png)
+
+The next step for this functionality was the UI addition of the refresh button. This was done in the habit_list.xml file. I also enhanced the overall design of this screen as well to ensure there is no overlapping of views to block certain functionality. The add habit button, priority filter sorting switch, and refresh button are all within a control toolbar above the habit list for easy access. 
+
+habit_list.xml file: ![image info](Pictures/iteration5/addhabitbar1.png)
+![image info](Pictures/iteration5/addhabitbar2.png)
+
+The last step for this refresh feature was configuring the code logic using the onClickListener in the HabitList.kt class. 
+
+![image info](Pictures/iteration5/habitlistonclick.png)
+
+As you can see within this logic, onClick of the refresh button triggers the application to go through each habit one by one. For each habit, if the habit is marked complete/checked, it's streak attribute is incremented by 1 to portray that the user has added a day to their streak of completing this habit. In the event that the habit is not marked complete/unchecked, the corresponding habit's streak would be reset back to 0, since that streak has been broken. Aftereach habit is assessed, they are switched back to being unchecked to start a new day.
 
 
 ## 5. Project Structure - (recent changes highlighted)
@@ -283,7 +302,14 @@ Finally, I made an addition of a HabitTrackerRepository.kt class that will encap
 |5|Refresh List (Desirable) and Prioritize Habits/Filter functionality (Optional)|Each habit's individual values are edited and or used to order them on the page |
 
 ## 7. Future Work 
-[TODO] - Optional
+
+Although much work and progress has been made on this project, it is far from complete and has so much potential for future work and enhancements. I have indicated some of these ideas for potential progress in the "TODO (if time permits)" rows of the Requirement Analysis and Testing section of this report. 
+
+In iteration 5 I introduced a new field "streaks" to track completion consistency of each habit. This field can be made useful in the setup of a progress report page of some sort, which will provide feedback to the user on thier progress and encourage them to keep up with their work in developing and sticking to these habits. 
+
+Another useful future enhancement for the Habit Tracker application can include the sorting functionality. This is implemented already in the front end, but the backend logic is not configured yet. The goal for this was to sort the habits in the list in order of their priority level to allow the user to focus on habits based on their priority. In addition to this, it may be beneficial to sort the habits based off their reminder time, or alphabetically, or even include a search function for when the number of habits on the applicaiton can be overwhelming. 
+
+Another potential enhancement I hinted at was the implementation of a reminder notification. Although I have already configured the reminder parameter and attribute of each habit, there is no reminder actually "set". This would require the teaming up with the device's notification settings to allow a pop-up or push notificaitons at the time in which the reminder was set to ring for. 
 
 ## 8. Project Demo Links
 
@@ -293,3 +319,4 @@ Github Link: https://github.com/CS683/metcs683projects-divthomas22
 
 - Routines by Care/Of - https://apps.apple.com/us/app/routines-by-care-of/id1498695422
 - Navigation for RecyclerView - https://stackoverflow.com/questions/57117726/navigation-component-in-recyclerview-adapter 
+- Lecture Notes from class - https://onlinecampus.bu.edu/ultra/courses/_85894_1/cl/outline 

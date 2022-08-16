@@ -111,6 +111,7 @@ class HabitList : Fragment(), View.OnClickListener {
 
     override fun onClick(view: View) {
         if (view.id == R.id.refresh) {
+            Log.d("Refresh Status", "Refreshing to a new day...")
             val count = myAdapter.itemCount
             if (count > 0) {
                 for (i in 0 until count){
@@ -138,7 +139,6 @@ class HabitList : Fragment(), View.OnClickListener {
                         )
                         Log.d("Refresh Status", "Habit ${habit.id} streak broken.")
                     }
-
                     Log.d("Updated Habit", "${viewModel.curHabit.value}")
                 }
             }
