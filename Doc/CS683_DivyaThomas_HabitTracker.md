@@ -313,8 +313,8 @@ Another potential enhancement I hinted at was the implementation of a reminder n
 
 ## 8. Project Demo Links
 
-Github Link: https://github.com/CS683/metcs683projects-divthomas22
-Habit Tracker Demo Presentation: https://onlinecampus.bu.edu/ultra/tools/lti/launchFrame?toolHref=https:~2F~2Fonlinecampus.bu.edu~2Fwebapps~2Fblackboard~2Fexecute~2Fblti~2FlaunchPlacement%3Fblti_placement_id%3D_256_1%26wrapped%3Dtrue%26from_ultra%3Dtrue
+- Github Link: https://github.com/CS683/metcs683projects-divthomas22
+- Habit Tracker Demo Presentation: https://onlinecampus.bu.edu/ultra/tools/lti/launchFrame?toolHref=https:~2F~2Fonlinecampus.bu.edu~2Fwebapps~2Fblackboard~2Fexecute~2Fblti~2FlaunchPlacement%3Fblti_placement_id%3D_256_1%26wrapped%3Dtrue%26from_ultra%3Dtrue
 
 ## 9. References
 
