@@ -5,7 +5,7 @@
 ## 1. Overview
 In this day and age, people are busy. It's hard to stick to a routine and develop good habits while surrounded by distractions and long to-do lists. Since good habits are so important and beneficial to your overall wellbeing and everyday life, Habit Tracker is an organized consistent tool that can be used to keep people on track, especially those like me who LOVE to stay organized, keep lists, and track their progress. 
 
-This is an application that allows users to plan out their daily habits and moods, with reminders and the ability to check thier consistency over time.
+This is an application that allows users to plan out and track completion of their daily habits, with the potential for reminders and the ability to check thier consistency over time.
 
 ## 2. Related Work
 
@@ -13,9 +13,9 @@ My main inspiration for this application is the "Routines" iOS application by Ca
 
 As someone who gets easily distracted by my phone in the morning or other priorities, this application has helped me tremendously in developing good, consistent habits that set me up for success. I have never felt more organized and accomplished than after I started using this application.
 
-While the "Routines" application is strictly for morning and evening routines, rather than general habits. It allows users to set up and list customized steps to thier routines, and check them off as they go about their days. The application also provides reflection questions in which the user can assess their mental health and periodically encourages them when they have completed a consistent streak of completing particuar tasks over a course of time. At the end of the week, the user is able to find a detailed progress report connecting their reflections/moods with te consistency of thier completion of tasks in their routines.
+While the "Routines" application is strictly for morning and evening routines, rather than general habits. It allows users to set up and list customized steps to thier routines, and check them off as they go about their days. The application also provides reflection questions in which the user can assess their mental health and periodically encourages them when they have completed a consistent streak of completing particular tasks over a course of time. At the end of the week, the user is able to find a detailed progress report connecting their reflections/moods with te consistency of thier completion of tasks in their routines.
 
-I envision the Habit Tracker to be similar to this application in that it shows a list of custom items for the user to be able to check off as their days progress. I want this to also track trends and provide some sort of report and analysis of the user's progress. 
+I envision the Habit Tracker to be similar to this application in that it shows a list of customizable items for the user to be able to check off as their days progress. I want this to also track trends and provide some sort of report and analysis of the user's progress if time permits. 
 
 
 ## 3. Requirement Analysis and Testing
@@ -44,7 +44,7 @@ I envision the Habit Tracker to be similar to this application in that it shows 
 
 |   |   |
 |---|---|
-|Title| Refresh List (Desirable) |
+|Title| Refresh List (Desirable) *COMPLETED*|
 |Description| As a user I want to be able to refresh my habit list every day so that I am able to consistently go through this completion progress day by day and eventually develop a habit. |
 |Mockups| ![image info](Pictures/refresh.PNG) |
 |Acceptance Tests| Given that the screen shows a list of completed and not completed habits, the user is able to refresh the list to clear all checkmarks and start new with a list of non-completed tasks. |
@@ -58,8 +58,10 @@ I envision the Habit Tracker to be similar to this application in that it shows 
 |Mockups| ![image info](Pictures/report.png) |
 |Acceptance Tests| Given that a user selected to complete a habit, Data is then stored and the streak count for that habit is incremented. Vice versa when the user deselects the habit (different from refreshing) |
 |Test Results - Iteration 4|Proof of Database setup from UI. Pulls the 2 previously added records from Database table. ![image info](Pictures/iteration4/databasepull.png)|
+|Test Results - Iteration 5|[TODO]|
 |Status - Iteration 4| Room Database is configured and habits are being saved and updated accordingly. Completely removed dependence of the habitArray List that was being used before.|
-|TODO|Add additional columns and configurations for tracking habit progress reports and streaks|
+|Status - Iteration 5|Added additional columns and configurations for tracking habit progress reports and streaks|
+|TODO (If time permits) | Set up a "reports" page that displays streak data for the user to be able to check his/her progress |
 
 |   |   |
 |---|---|
@@ -246,6 +248,10 @@ Finally, I made an addition of a HabitTrackerRepository.kt class that will encap
 
 ![image info](Pictures/iteration4/repo.png)
 
+### ITERATION 5:
+
+[TODO]
+
 
 ## 5. Project Structure - (recent changes highlighted)
 ### Iteration 1 Project Structure
@@ -263,6 +269,8 @@ Finally, I made an addition of a HabitTrackerRepository.kt class that will encap
 ### Iteration 4 Project Structure
 ![image info](Pictures/iteration4/projstructure4.png)
 
+### Iteration 5 Project Structure
+![image info](Pictures/iteration5/projstruct5.png)
 
 ## 6. Timeline - *ON TRACK*
 

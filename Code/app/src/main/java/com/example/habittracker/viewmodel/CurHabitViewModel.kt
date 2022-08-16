@@ -32,7 +32,8 @@ class CurHabitViewModel(application: Application): AndroidViewModel(application)
         description: String,
         priority: Float,
         remindTime: String,
-        isComplete: Boolean
+        isComplete: Boolean,
+        streak: Int
     ){
         _curHabit.value = _curHabit.value?.apply{
             this.name = name
@@ -40,6 +41,7 @@ class CurHabitViewModel(application: Application): AndroidViewModel(application)
             this.priority = priority
             this.remindTime = remindTime
             this.isComplete = isComplete
+            this.streak = streak
         }
         habitTrackerRepository.editHabit(_curHabit.value!!)
     }

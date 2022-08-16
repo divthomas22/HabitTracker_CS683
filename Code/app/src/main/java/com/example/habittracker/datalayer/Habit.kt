@@ -13,9 +13,10 @@ data class Habit(
     var priority: Float,
     @ColumnInfo(name = "reminder")
     var remindTime: String,
-    var isComplete: Boolean) {
+    var isComplete: Boolean,
+    var streak: Int) {
 
     override fun toString(): String {
-        return "Habit(id=$id, name='$name', description='$description', priority=$priority, remindTime='$remindTime', isComplete=$isComplete)"
+        return "Habit(id=$id, name='$name', description='$description', priority=$priority, remindTime='$remindTime', isComplete=$isComplete, streak=$streak)"
     }
 }

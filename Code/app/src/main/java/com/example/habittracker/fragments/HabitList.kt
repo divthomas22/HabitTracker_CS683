@@ -24,7 +24,7 @@ import com.example.habittracker.viewmodel.CurHabitViewModel
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class HabitList : Fragment() {
+class HabitList : Fragment(), View.OnClickListener {
 
     private var _binding: HabitListBinding? = null
     private val binding get() = _binding!!
@@ -60,7 +60,7 @@ class HabitList : Fragment() {
         listViewModel =
             ViewModelProvider(this).get(HabitListViewModel::class.java)
 
-        binding.recyclerView?.apply{
+        binding.recyclerView.apply{
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
@@ -69,14 +69,15 @@ class HabitList : Fragment() {
                 object : HabitListAdapter.OnHabitClickListener {
                     override fun onHabitClick(habit: Habit) {
                         viewModel.setCurHabit(habit)
-                        Log.d(ContentValues.TAG, "Setting curHabit to: \n${habit.toString()}")
+                        Log.d(TAG, "Setting curHabit to: \n${habit}")
                         viewModel.updateCurHabit(
                             habit.name,
                             habit.description,
                             habit.priority,
                             habit.remindTime,
-                            habit.isComplete)
-                        onHabitClickListener?.onHabitClick(habit)
+                            habit.isComplete,
+                            habit.streak)
+                        onHabitClickListener.onHabitClick(habit)
                     }
                 }
             )
@@ -98,7 +99,9 @@ class HabitList : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
-    //        if (myAdapter.itemCount > 0){
+        binding.refresh.setOnClickListener (this)
+
+//        if (myAdapter.itemCount > 0){
 //            binding.emptyView.text = ""
 //        } else {
 //            binding.emptyView.text = "No Habits yet! Create one! ->"
@@ -106,7 +109,44 @@ class HabitList : Fragment() {
 
     }
 
+    override fun onClick(view: View) {
+        if (view.id == R.id.refresh) {
+            val count = myAdapter.itemCount
+            if (count > 0) {
+                for (i in 0 until count){
+                    val habit = myAdapter.getHabit(i)
+                    viewModel.setCurHabit(habit)
+                    if (habit.isComplete){   //habit was completed today
+                        viewModel.updateCurHabit(
+                            habit.name,
+                            habit.description,
+                            habit.priority,
+                            habit.remindTime,
+                            false,
+                            habit.streak + 1
+                        )
+                        Log.d("Refresh Status", "Habit ${habit.id} streak updated.")
+                    }
+                    else { //streak is broken
+                        viewModel.updateCurHabit(
+                            habit.name,
+                            habit.description,
+                            habit.priority,
+                            habit.remindTime,
+                            false,
+                            0
+                        )
+                        Log.d("Refresh Status", "Habit ${habit.id} streak broken.")
+                    }
 
+                    Log.d("Updated Habit", "${viewModel.curHabit.value}")
+                }
+            }
+            else {
+                Log.d("Refresh Status", "NO HABITS SAVED.")
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

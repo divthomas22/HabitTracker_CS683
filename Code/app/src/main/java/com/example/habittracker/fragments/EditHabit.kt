@@ -70,7 +70,8 @@ class EditHabit : Fragment(), View.OnClickListener {
                 binding.descEdit.text.toString(),
                 binding.editPriority.rating,
                 binding.editReminder.text.toString(),
-                    habit.isComplete
+                    habit.isComplete,
+                    habit.streak
                 )
                 Log.d(TAG, "Habit updated at id ${habit.id}: \n" + viewModel.curHabit.value?.toString())
             }

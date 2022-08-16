@@ -66,7 +66,8 @@ class CreateHabit : Fragment(), View.OnClickListener {
                 binding.descCreate.text.toString(),
                 binding.createPriority.rating,
                 binding.createReminder.text.toString(),
-                false
+                false,
+                0
             )
 
             listViewModel.addHabit(habit)

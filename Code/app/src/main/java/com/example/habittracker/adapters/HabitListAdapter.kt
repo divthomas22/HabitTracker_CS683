@@ -69,7 +69,8 @@ class HabitListAdapter(private val onHabitClickListener: OnHabitClickListener) :
                 "",
                 toFloat(0),
                 "0:00",
-                false)
+                false,
+                0)
         }
     }
 
